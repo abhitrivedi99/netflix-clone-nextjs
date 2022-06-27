@@ -16,7 +16,7 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
       </Head>
 
       <main className={styles.main}>
-        <NavBar username="abhit99@gmail.com" />
+        <NavBar />
         <Banner
           videoId="4zH5iYM4wJo"
           title="Clifford the red dog"

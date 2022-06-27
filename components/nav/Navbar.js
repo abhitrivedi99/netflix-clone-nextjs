@@ -5,29 +5,29 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// import { magic } from '../../lib/magic-client';
+import { magic } from '../../lib/magic-client';
 
-const NavBar = ({ username }) => {
+const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  // const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [didToken, setDidToken] = useState('');
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const applyUsernameInNav = async () => {
-  //     try {
-  //       const { email, issuer } = await magic.user.getMetadata();
-  //       const didToken = await magic.user.getIdToken();
-  //       if (email) {
-  //         setUsername(email);
-  //         setDidToken(didToken);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error retrieving email', error);
-  //     }
-  //   };
-  //   applyUsernameInNav();
-  // }, []);
+  useEffect(() => {
+    const applyUsernameInNav = async () => {
+      try {
+        const { email, issuer } = await magic.user.getMetadata();
+        const didToken = await magic.user.getIdToken();
+        if (email) {
+          setUsername(email);
+          setDidToken(didToken);
+        }
+      } catch (error) {
+        console.error('Error retrieving email', error);
+      }
+    };
+    applyUsernameInNav();
+  }, []);
 
   const handleOnClickHome = (e) => {
     e.preventDefault();
@@ -48,20 +48,23 @@ const NavBar = ({ username }) => {
     console.log('CLicked sign out');
     // e.preventDefault();
 
-    // try {
-    //   const response = await fetch('/api/logout', {
-    //     method: 'POST',
-    //     headers: {
-    //       Authorization: `Bearer ${didToken}`,
-    //       'Content-Type': 'application/json',
-    //     },
-    //   });
+    try {
+      // const response = await fetch('/api/logout', {
+      //   method: 'POST',
+      //   headers: {
+      //     Authorization: `Bearer ${didToken}`,
+      //     'Content-Type': 'application/json',
+      //   },
+      // });
 
-    //   const res = await response.json();
-    // } catch (error) {
-    //   console.error('Error logging out', error);
-    //   router.push('/login');
-    // }
+      // const res = await response.json();
+      await magic.user.logout();
+      console.log(await magic.user.isLoggedIn());
+      router.push('/login');
+    } catch (error) {
+      console.error('Error logging out', error);
+      router.push('/login');
+    }
   };
 
   return (
