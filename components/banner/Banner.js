@@ -35,7 +35,7 @@
 // export default Banner;
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import styles from './banner.module.css';
+import styles from './Banner.module.css';
 
 const Banner = (props) => {
   const { title, subTitle, imgUrl, videoId } = props;

@@ -15,7 +15,8 @@
     "magic-sdk": "^8.1.1",
     "next": "12.1.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "eslint": "8.18.0",

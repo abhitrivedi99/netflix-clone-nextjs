@@ -1,4 +1,4 @@
-import Card from './card';
+import Card from '../card/Card';
 import Link from 'next/link';
 import clsx from 'classnames';
 import styles from './SectionCards.module.css';
